@@ -10,13 +10,15 @@ mod tests;
 
 #[frame_support::pallet]
 pub mod pallet {
-	use frame_support::{dispatch::DispatchResultWithPostInfo, pallet_prelude::*};
+	use frame_support::{dispatch::DispatchResultWithPostInfo, pallet_prelude::*, ensure};
 	use frame_system::pallet_prelude::*;
 	use sp_std::vec::Vec;
 
 	#[pallet::config]
 	pub trait Config: frame_system::Config {
 		type Event: From<Event<Self>> + IsType<<Self as frame_system::Config>::Event>;
+    #[pallet::constant]
+    type MaxProofLength: Get<u32>;
 	}
 
 	#[pallet::pallet]
@@ -41,6 +43,7 @@ pub mod pallet {
 		ProofAlreadyExist,
 		ClaimNotExist,
 		NotClaimOwner,
+    ProofTooLong,
 	}
 
 	#[pallet::hooks]
@@ -51,8 +54,11 @@ pub mod pallet {
 		#[pallet::weight(0)]
 		pub fn create_claim(origin: OriginFor<T>, claim: Vec<u8>) -> DispatchResultWithPostInfo {
 			let sender = ensure_signed(origin)?;
+  
+      ensure!(claim.len() <= T::MaxProofLength::get() as usize, Error::<T>::ProofTooLong);
 			ensure!(!Proofs::<T>::contains_key(&claim), Error::<T>::ProofAlreadyExist);
-			Proofs::<T>::insert(
+	
+      Proofs::<T>::insert(
 				&claim,
 				(sender.clone(), frame_system::Pallet::<T>::block_number()),
 			);

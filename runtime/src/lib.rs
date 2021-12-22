@@ -43,7 +43,6 @@ pub use sp_runtime::{Perbill, Permill};
 /// Import the template pallet.
 pub use pallet_template;
 
-/// Import the poe pallet.
 
 /// An index to a block.
 pub type BlockNumber = u32;
@@ -279,9 +278,15 @@ impl pallet_template::Config for Runtime {
 	type Event = Event;
 }
 
+// the max length of claim for pallet_poe
+parameter_types! {
+  pub const MaxLength: u32 = 32;
+}
+
 /// Configure the pallet-poe in pallets/poe.
 impl pallet_poe::Config for Runtime {
 	type Event = Event;
+  type MaxProofLength = MaxLength;
 }
 
 // Create the runtime by composing the FRAME pallets that were previously configured.
