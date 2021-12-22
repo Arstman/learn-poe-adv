@@ -54,12 +54,12 @@ impl system::Config for Test {
 }
 // the max length for poe pallet
 parameter_types! {
-  pub const MaxLength: u32 = 8; 
+  pub const MaxLength: u32 = 8;
 }
 
 impl pallet_poe::Config for Test {
 	type Event = Event;
-  type MaxProofLength = MaxLength;
+	type MaxProofLength = MaxLength;
 }
 
 // Build genesis storage according to the mock runtime.
