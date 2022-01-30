@@ -28,6 +28,7 @@ version = '3.0.0-monthly-2021-10'
 [dependencies]
 jsonrpc-core = '18.0.0'
 structopt = '0.3.8'
+hex-literal = { version = "0.3.4", optional = true }
 
 [dependencies.frame-benchmarking]
 git = 'https://github.com/paritytech/substrate.git'
