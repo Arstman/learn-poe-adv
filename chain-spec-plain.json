@@ -1,7 +1,7 @@
 {
-  "name": "Aaron Testnet",
-  "id": "aaron_testnet",
-  "chainType": "Live",
+  "name": "Local Testnet",
+  "id": "local_testnet",
+  "chainType": "Local",
   "bootNodes": [
     "/ip4/127.0.0.1/tcp/30333/p2p/12D3KooWKRkrcuDa5wF6E9p7WkRnCfDNEuLSvkBpdkLqQhemN4YG"
   ],
