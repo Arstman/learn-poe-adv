@@ -4,6 +4,8 @@ use frame_benchmarking::{benchmarks, account, impl_benchmark_test_suite, whiteli
 use frame_system::RawOrigin;
 use sp_std::prelude::*;
 
+// 此处仅仅benchmark create_claim 函数, 原因是poe模块3个extrinsic大致计算和io操作逻辑是一致的
+// 因此, 可以借助create_claim计算出了基准WeightInfo来统一分配
 benchmarks!{
   create_claim {
     let b in 1 .. 255;

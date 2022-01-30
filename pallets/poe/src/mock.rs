@@ -60,6 +60,7 @@ parameter_types! {
 impl pallet_poe::Config for Test {
 	type Event = Event;
 	type MaxProofLength = MaxLength;
+  type WeightInfo = ();
 }
 
 // Build genesis storage according to the mock runtime.

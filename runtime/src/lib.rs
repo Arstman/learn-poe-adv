@@ -286,6 +286,7 @@ parameter_types! {
 impl pallet_poe::Config for Runtime {
 	type Event = Event;
 	type MaxProofLength = MaxLength;
+  type WeightInfo = pallet_poe::weights::SubstrateWeight<Runtime>;
 }
 
 // Create the runtime by composing the FRAME pallets that were previously configured.
